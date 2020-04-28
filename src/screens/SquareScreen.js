@@ -24,7 +24,7 @@ const reducer = (state, action) => {
 }
 
 const SquareScreen = _ => {
-    const [state, runMyReducer] = useReducer(reducer, {
+    const [state, dispatch] = useReducer(reducer, {
         red: 50,
         green: 100,
         blue: 200
@@ -34,18 +34,18 @@ const SquareScreen = _ => {
         <View>
             <ColorChanger
                 color='red'
-                onMore={_ => runMyReducer({ colorToChange: 'red', amount: factor })}
-                onLess={_ => runMyReducer({ colorToChange: 'red', amount: -1 * factor })}
+                onMore={_ => dispatch({ colorToChange: 'red', amount: factor })}
+                onLess={_ => dispatch({ colorToChange: 'red', amount: -1 * factor })}
             />
             <ColorChanger
                 color='green'
-                onMore={_ => runMyReducer({ colorToChange: 'green', amount: factor })}
-                onLess={_ => runMyReducer({ colorToChange: 'green', amount: -1 * factor })}
+                onMore={_ => dispatch({ colorToChange: 'green', amount: factor })}
+                onLess={_ => dispatch({ colorToChange: 'green', amount: -1 * factor })}
             />
             <ColorChanger
                 color='blue'
-                onMore={_ => runMyReducer({ colorToChange: 'blue', amount: factor })}
-                onLess={_ => runMyReducer({ colorToChange: 'blue', amount: -1 * factor })}
+                onMore={_ => dispatch({ colorToChange: 'blue', amount: factor })}
+                onLess={_ => dispatch({ colorToChange: 'blue', amount: -1 * factor })}
             />
             <View
                 style={{height: 150, width: 300, backgroundColor: `rgb(${red},${green},${blue})`}}
