@@ -1,43 +1,51 @@
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
 import { View } from 'react-native'
 import ColorChanger from '../components/ColorChanger'
 
-const SquareScreen = _ => {
-    const [red, setRed] = useState(Math.floor(Math.random() * 256))
-    const [green, setGreen] = useState(Math.floor(Math.random() * 256))
-    const [blue, setBlue] = useState(Math.floor(Math.random() * 256))
-    const factor = 10
-    const setColor = (color, change) => {
-        switch(color) {
-            case 'red':
-                red + change > 255 || red + change < 0 ? null : setRed(red + change)
-                return
-            case 'green':
-                green + change > 255 || green + change < 0 ? null : setGreen(green + change)
-                return
-            case 'blue':
-                blue + change > 255 || blue + change < 0 ? null : setBlue(blue + change)
-                return
-            default:
-                return
-        }
+const factor = 10
+
+const reducer = (state, action) => {
+    switch (action.colorToChange) {
+        case 'red':
+            return state.red + action.amount > 255 || state.red + action.amount < 0
+                ? state
+                : { ...state, red: state.red + action.amount }
+        case 'green':
+            return state.green + action.amount > 255 || state.green + action.amount < 0
+            ? state
+            : { ...state, green: state.green + action.amount }
+        case 'blue':
+            return state.blue + action.amount > 255 || state.blue + action.amount < 0
+            ? state
+            : { ...state, blue: state.blue + action.amount }
+        default:
+            return state
     }
+}
+
+const SquareScreen = _ => {
+    const [state, runMyReducer] = useReducer(reducer, {
+        red: 50,
+        green: 100,
+        blue: 200
+    })
+    const { red, green, blue } = state
     return (
         <View>
             <ColorChanger
                 color='red'
-                onMore={_ => setColor('red', factor)}
-                onLess={_ => setColor('red', -1 * factor)}
+                onMore={_ => runMyReducer({ colorToChange: 'red', amount: factor })}
+                onLess={_ => runMyReducer({ colorToChange: 'red', amount: -1 * factor })}
             />
             <ColorChanger
                 color='green'
-                onMore={_ => setColor('green', factor)}
-                onLess={_ => setColor('green', -1 * factor)}
+                onMore={_ => runMyReducer({ colorToChange: 'green', amount: factor })}
+                onLess={_ => runMyReducer({ colorToChange: 'green', amount: -1 * factor })}
             />
             <ColorChanger
                 color='blue'
-                onMore={_ => setColor('blue', factor)}
-                onLess={_ => setColor('blue', -1 * factor)}
+                onMore={_ => runMyReducer({ colorToChange: 'blue', amount: factor })}
+                onLess={_ => runMyReducer({ colorToChange: 'blue', amount: -1 * factor })}
             />
             <View
                 style={{height: 150, width: 300, backgroundColor: `rgb(${red},${green},${blue})`}}
