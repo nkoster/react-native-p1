@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         borderColor: 'lightgray',
         flexDirection: 'row',
         height: 100,
-        alignItems: 'center'
+        alignItems: 'flex-start'
     },
     textStyle: {
         borderWidth: 1,
