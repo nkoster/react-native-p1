@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
     viewStyle: {
         borderWidth: 1,
         borderColor: 'lightgray',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        height: 100
     },
     textStyle: {
         borderWidth: 1,
