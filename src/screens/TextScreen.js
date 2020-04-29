@@ -14,6 +14,7 @@ const TextScreen = _ => {
                 onChangeText={inputText => setName(inputText)}
             />
             <Text>Your name is {name != '' ? name : '?'}</Text>
+            {name.length < 3 ? <Text>(length must be >2)</Text> : null}
         </View>
     )
 }
