@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'lightgray',
         flexDirection: 'row',
-        height: 100
+        height: 100,
+        alignItems: 'center'
     },
     textStyle: {
         borderWidth: 1,
