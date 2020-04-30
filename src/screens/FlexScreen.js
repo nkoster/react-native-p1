@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     viewStyle: {
         borderWidth: 1,
         borderColor: 'lightgray',
-        alignItems: 'center',
+        alignItems: 'stretch',
         height: 300
     },
     textOneStyle: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         borderColor: 'green',
         margin: 2,
         padding: 5,
-        alignSelf: 'stretch',
+        position: 'absolute',
         borderRadius: 15
     },
     textThreeStyle: {
